@@ -31,9 +31,13 @@ class DessinTransform(QFrame):
         painter.fillRect(QRect(300, 400, 20, 20), brosse)
 
         transform_texte = QTransform()
+        # Translate applique une translation
         transform_texte.translate(50, 50)
+        # On effectue une rotation de 45 degrés horaire
         transform_texte.rotate(45)
+        # On applique la transformation au painter
         painter.setTransform(transform_texte)
+        # Le QPoint(0, 0) est par rapport à la transformation appliquée (50, 50)
         painter.drawText(QPoint(0, 0), "Bonjour le monde!")
 
         transform_formes = QTransform()

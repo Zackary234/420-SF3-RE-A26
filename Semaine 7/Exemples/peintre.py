@@ -35,6 +35,7 @@ class Painter2025(QFrame):
         print(f"couleur clicked: {couleur}")
         self.couleur_courante = couleur
 
+    # mouseMoveEvent() est un événement appelé à chaque movement de souris
     def mouseMoveEvent(self, event, /):
         canevas = self.canevas
         painter = QPainter(canevas)

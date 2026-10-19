@@ -11,7 +11,7 @@ class MainWindow(QMainWindow):
 
         self.label = QLabel()
         canvas = QPixmap(400, 300)
-        canvas.fill(Qt.white)
+        canvas.fill(QColorConstants.White)
         self.label.setPixmap(canvas)
         self.setCentralWidget(self.label)
         self.qcd = QColorDialog()
@@ -27,6 +27,7 @@ class MainWindow(QMainWindow):
 
         self.precedent_x, self.precedent_y = None, None
 
+    # mouseMoveEvent est un événement appelé à chaque fois que l'on bouge la souris
     # Pour éviter d'avoir des lignes "brisées", on dessine des lignes entre 2 points au lieu de plusieurs points
     def mouseMoveEvent(self, e: QMouseEvent):
         position = e.position()
@@ -41,7 +42,7 @@ class MainWindow(QMainWindow):
         qpen = QPen()
         qpen.setColor(self.couleur)
         painter.setPen(qpen)
-        painter.drawLine(self.precedent_x, self.precedent_y, position.x(), position.y())
+        painter.drawLine(self.precedent_x, self.precedent_y, int(position.x()), int(position.y()))
         painter.end()
         self.label.setPixmap(canvas)
 

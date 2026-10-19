@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel
-from PySide6.QtGui import QPainter, QPixmap, QColorConstants, QPen, QBrush
+from PySide6.QtGui import QPainter, QPixmap, QColorConstants, QPen, QBrush, QColor
 from PySide6.QtCore import QSize, Qt
 
 
@@ -12,6 +12,7 @@ class QPainterEx(QMainWindow):
         # Création d'un canevas d'une largeur de 500 pixels et d'une hauteur de 400 pixels
         canevas = QPixmap(QSize(500, 400))
         # Remplir le canevas d'une couleur
+        # QColorConstants contient un ensemble de couleurs prédéfinies
         canevas.fill(QColorConstants.White)
 
         self.etiquette_centrale.setPixmap(canevas)
@@ -26,13 +27,15 @@ class QPainterEx(QMainWindow):
         crayon = QPen()
         crayon.setWidth(30)
         pinceau = QBrush()
+        # on change le style de brosse
         pinceau.setStyle(Qt.BrushStyle.Dense5Pattern)
         pinceau.setColor(QColorConstants.Red)
         crayon.setBrush(pinceau)
         painter.setPen(crayon)
         painter.drawLine(50, 50, 75, 100)
         crayon2 = QPen()
-        crayon2.setColor(QColorConstants.DarkBlue)
+        # Une autre façon d'initialiser une couleur, en utilisant QColor(r, g, b)
+        crayon2.setColor(QColor(24, 37, 112))
         crayon2.setWidth(15)
         painter.setPen(crayon2)
         painter.drawPoint(200, 250)
