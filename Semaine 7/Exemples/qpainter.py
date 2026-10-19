@@ -22,13 +22,16 @@ class QPainterEx(QMainWindow):
     def dessiner(self):
         # Retrouver le pixmap pour notre canevas via notre QLabel
         canevas = self.etiquette_centrale.pixmap()
+        # Initialise le painter
         painter = QPainter(canevas)
         # Dessiner une ligne de (25,50) à (150,150)
         painter.drawLine(25, 50, 150, 150)
         painter.drawText(150, 200, "Il est temps de dessiner!")
-        # (x, y, largeur, hauteur)
+        # (x, y, largeur en pixel, hauteur en pixel), (x, y) étant le coin en haut à gauche
         painter.drawRect(65, 250, 90, 75)
+        # SUPER IMPORTANT, appeler le .end() pour relâcher le QPainter
         painter.end()
+        # On remet le canevas (QPixmap) sur le QLabel
         self.etiquette_centrale.setPixmap(canevas)
 
 
