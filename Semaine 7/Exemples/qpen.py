@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel
-from PySide6.QtGui import QPainter, QPixmap, QColorConstants, QPen, QBrush, QColor
+from PySide6.QtGui import QPainter, QPixmap, QColorConstants, QPen, QBrush, QColor, QPainterPath
 from PySide6.QtCore import QSize, Qt
 
 
@@ -9,8 +9,8 @@ class QPainterEx(QMainWindow):
         super().__init__()
 
         self.etiquette_centrale = QLabel()
-        # Création d'un canevas d'une largeur de 500 pixels et d'une hauteur de 400 pixels
-        canevas = QPixmap(QSize(500, 400))
+        # Création d'un canevas d'une largeur de 800 pixels et d'une hauteur de 600 pixels
+        canevas = QPixmap(QSize(800, 600))
         # Remplir le canevas d'une couleur
         # QColorConstants contient un ensemble de couleurs prédéfinies
         canevas.fill(QColorConstants.White)
@@ -37,8 +37,33 @@ class QPainterEx(QMainWindow):
         # Une autre façon d'initialiser une couleur, en utilisant QColor(r, g, b)
         crayon2.setColor(QColor(24, 37, 112))
         crayon2.setWidth(15)
+        # Les constantes pour PenCapStyle sont dans une class interne de Qt
+        crayon2.setCapStyle(Qt.PenCapStyle.RoundCap)
+        # de façon similaire pour les PenJointStyle
+        crayon2.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
         painter.setPen(crayon2)
         painter.drawPoint(200, 250)
+
+        # On va faire un "chemin" à dessiner, une succession de formes
+        chemin = QPainterPath()
+        # commencer un sous-chemin
+        chemin.moveTo(50, 50)
+        chemin.lineTo(150, 50)
+        # courbe de Bézier cubique
+        chemin.cubicTo(200, 50, 200, 150, 150, 150)
+        chemin.lineTo(50, 150)
+        # ferme le sous-chemin, cela va compléter jusqu'au départ
+        chemin.closeSubpath()
+
+        # ajouter des formes simples
+        chemin.addEllipse(250, 40, 120, 120)
+        chemin.addRect(400, 40, 120, 120)
+
+        # ajouter un arc (x, y, w, h, startAngle, sweepLength) en degrés
+        chemin.moveTo(100, 250)
+
+        # on dessine le chemin
+        painter.drawPath(chemin)
 
         painter.end()
         self.etiquette_centrale.setPixmap(canevas)
