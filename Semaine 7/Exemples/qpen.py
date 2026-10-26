@@ -31,6 +31,7 @@ class QPainterEx(QMainWindow):
         pinceau.setStyle(Qt.BrushStyle.Dense5Pattern)
         pinceau.setColor(QColorConstants.Red)
         crayon.setBrush(pinceau)
+        # On applique le pinceau sur le crayon
         painter.setPen(crayon)
         painter.drawLine(50, 50, 75, 100)
         crayon2 = QPen()
@@ -59,7 +60,6 @@ class QPainterEx(QMainWindow):
         chemin.addEllipse(250, 40, 120, 120)
         chemin.addRect(400, 40, 120, 120)
 
-        # ajouter un arc (x, y, w, h, startAngle, sweepLength) en degrés
         chemin.moveTo(100, 250)
 
         # on dessine le chemin

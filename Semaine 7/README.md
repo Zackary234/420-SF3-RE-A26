@@ -1,6 +1,6 @@
 # Dessinons sur un canevas
 ## Faire une graphe personnalisé
-1) Créer un application contenant
+1) Créer une application contenant
    1) Un canevas où dessiner (QLabel + QPixmap)
    2) Une section contenant
       1) un widget permettant de choisir la couleur du pinceau

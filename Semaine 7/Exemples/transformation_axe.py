@@ -31,7 +31,7 @@ class DessinTransform(QFrame):
         painter.fillRect(QRect(300, 400, 20, 20), brosse)
 
         transform_texte = QTransform()
-        # Translate applique une translation
+        # translate() applique une translation
         transform_texte.translate(50, 50)
         # On effectue une rotation de 45 degrés horaire
         transform_texte.rotate(45)
